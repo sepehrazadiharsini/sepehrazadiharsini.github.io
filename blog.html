@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Blog</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h2 class="name">Sepehr Azadi Harsini</h2>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="projects.html">My Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="blog-posts">
+            <h2>Blog Posts</h2>
+            <!-- Blog posts will be displayed here -->
+        </section>
+        <aside class="login-form">
+            <h2>Login</h2>
+            <form action="login.php" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+                <button type="reset" onclick="return confirm('Are you sure you want to clear the form?')">Clear</button>
+            </form>
+        </aside>
+    </main>
+    <footer id="contact">
+        <p>Contact</p>
+        <p>Email: <a href="mailto:sepehrazadiharsini@gmail.com"><i class="fas fa-envelope"></i> sepehrazadiharsini@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
+    </footer>
+</body>
+</html>
