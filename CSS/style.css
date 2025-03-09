@@ -83,6 +83,34 @@ header nav h2 {
     margin: 0;
 }
 
+header nav h2.name {
+    margin: 0;
+    color: #fff;
+    font-family: "Exo 2", sans-serif;
+    font-weight: bold;
+    margin-right: auto;
+    font-size: 1.5rem;
+}
+
+/* Navbar styles */
+.nav-link {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-link li {
+    padding-left: 3rem;
+}
+
+.nav-link li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
 header nav ul {
     list-style: none;
     padding: 0;
@@ -103,7 +131,7 @@ header nav ul li a {
 
 /* Article Style */
 article {
-    margin-bottom: 2rem; /* Add space between each article */
+    margin-bottom: 2rem;
 }
 
 /* About Me Section */
