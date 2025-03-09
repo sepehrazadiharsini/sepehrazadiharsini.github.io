@@ -49,7 +49,7 @@ a:hover {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -109,6 +109,10 @@ header nav h2.name {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+}
+
+.nav-link li a:hover {
+    text-decoration: underline;
 }
 
 header nav ul {
@@ -280,9 +284,9 @@ h2 {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 0.0625rem solid black; /* 1px */
     border-collapse: collapse;
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     text-align: left;
 }
 
