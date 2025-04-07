@@ -283,11 +283,10 @@ h2 {
     text-align: center;
 }
 
-table, th, td {
-    border: 0.0625rem solid black;
-    border-collapse: collapse;
-    padding: 0.625rem;
-    text-align: left;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 th {
