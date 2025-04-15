@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $user['password'])) {
             // Set session variables
             $_SESSION['user_email'] = $user['email'];
-            $_SESSION['user_name'] = $user['name'];
 
             // Redirect to addEntry.php
             header("Location: addEntry.php");
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css" type="text/css">
+    <link rel="stylesheet" href="../CSS/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>SEPEHR | LOGIN</title>
@@ -74,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php if (isset($error_message)): ?>
                 <p class="error"><?php echo htmlspecialchars($error_message); ?></p>
             <?php endif; ?>
-            <form action="login.php" method="POST">
+            <form action="PHP/login.php" method="POST">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 <label for="password">Password:</label>

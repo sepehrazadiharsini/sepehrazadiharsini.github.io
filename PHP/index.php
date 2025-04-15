@@ -18,9 +18,9 @@
         <nav>
             <h2 class="name">Sepehr Azadi Harsini</h2>
             <ul class="nav-link">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="projects.html">My Portfolio</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="viewBlog.php">Blog</a></li>
+                <li><a href="../projects.html">My Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -127,7 +127,7 @@
     <footer id="contact">
         <p>Contact</p>
         <p>Email: <a href="mailto:ec24789@qmul.ac.uk"><i class="fas fa-envelope"></i>s.azadi-harsini@se24.qmul.ac.uk</a></p>
-        <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i>https://github.com/sepehrazadiharsini</a></p>
+        <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
     </footer>
 
 </body>
