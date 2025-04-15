@@ -48,14 +48,20 @@ if (!isset($_SESSION['user_email'])) {
             <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_email']); ?>!</p>
             <aside class="post-form">
                 <h2>New Post</h2>
-                <form action="addPost.php" method="POST">
+                <form id="postForm" action="addPost.php" method="POST">
                     <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required>
+                    <input type="text" id="title" name="title" value="<?php echo isset($_SESSION['edit_title']) ? htmlspecialchars($_SESSION['edit_title']) : ''; ?>" required>
                     <label for="content">Content:</label>
-                    <textarea id="content" name="content" rows="5" required></textarea>
-                    <button type="submit">Post</button>
-                    <button type="reset" onclick="return confirm('Are you sure you want to clear the form?')">Clear</button>
+                    <textarea id="content" name="content" rows="5" required><?php echo isset($_SESSION['edit_content']) ? htmlspecialchars($_SESSION['edit_content']) : ''; ?></textarea>
+                    <button type="submit" name="action" value="post">Post</button>
+                    <button type="submit" name="action" value="preview">Preview</button>
+                    <button type="reset" id="clearButton">Clear</button>
                 </form>
+                <?php
+                // Clear the session variables after pre-filling the form
+                unset($_SESSION['edit_title']);
+                unset($_SESSION['edit_content']);
+                ?>
             </aside>
         </section>
     </main>
@@ -65,5 +71,9 @@ if (!isset($_SESSION['user_email'])) {
         <p>Email: <a href="mailto:ec24789@qmul.ac.uk"><i class="fas fa-envelope"></i>s.azadi-harsini@se24.qmul.ac.uk</a></p>
         <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
     </footer>
+
+    <!-- Include external JavaScript -->
+    <script src="../Javascript/prevent.js"></script>
+    <script src="../Javascript/clearForm.js"></script>
 </body>
 </html>

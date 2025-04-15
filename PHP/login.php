@@ -79,8 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
                 <button type="submit">Login</button>
-                <button type="reset" onclick="return confirm('Are you sure you want to clear the form?')">Clear</button>
+                <button type="reset" id="clearButton">Clear</button>
             </form>
+
+            <!-- Include external JavaScript -->
+            <script src="../Javascript/clearForm.js"></script>
         </aside>
     </main>
 
