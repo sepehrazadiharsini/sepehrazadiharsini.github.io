@@ -18,43 +18,60 @@ if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-// Fetch unique months and years from the blog_posts table for the dropdown
-$archive_query = "SELECT DISTINCT DATE_FORMAT(date_created, '%Y-%m') AS archive_month FROM blog_posts ORDER BY archive_month DESC";
-$archive_result = $connection->query($archive_query);
+// Fetch all blog posts from the database
+$query = "SELECT * FROM blog_posts";
+$result = $connection->query($query);
 
-// Handle filtering by Title, Date, and Content
-$filter_query = "WHERE 1=1"; // Default condition to allow appending filters
-if (isset($_GET['title']) && !empty($_GET['title'])) {
-    $title_filter = $connection->real_escape_string($_GET['title']);
-    $filter_query .= " AND title LIKE '%$title_filter%'";
-}
-if (isset($_GET['date']) && !empty($_GET['date'])) {
-    $date_filter = $connection->real_escape_string($_GET['date']);
-    $filter_query .= " AND DATE(date_created) = '$date_filter'";
-}
-if (isset($_GET['content']) && !empty($_GET['content'])) {
-    $content_filter = $connection->real_escape_string($_GET['content']);
-    $filter_query .= " AND content LIKE '%$content_filter%'";
-}
-
-// Handle filtering by month
-if (isset($_GET['month']) && !empty($_GET['month'])) {
-    $selected_month = $connection->real_escape_string($_GET['month']);
-    $filter_query .= " AND DATE_FORMAT(date_created, '%Y-%m') = '$selected_month'";
-}
-
-// Handle sorting by date
-$order_query = "ORDER BY date_created DESC"; // Default to newest first
-if (isset($_GET['sort'])) {
-    $sort_order = $connection->real_escape_string($_GET['sort']);
-    if ($sort_order === "oldest") {
-        $order_query = "ORDER BY date_created ASC";
+$posts = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $posts[] = $row;
     }
 }
 
-// Fetch blog posts based on the filters and sorting order
-$query = "SELECT * FROM blog_posts $filter_query $order_query";
-$result = $connection->query($query);
+// Fetch unique months and years for the dropdown
+$archive_query = "SELECT DISTINCT DATE_FORMAT(date_created, '%Y-%m') AS archive_month FROM blog_posts ORDER BY archive_month DESC";
+$archive_result = $connection->query($archive_query);
+
+// Apply filters
+if (isset($_GET['title']) && !empty($_GET['title'])) {
+    $title_filter = strtolower($_GET['title']);
+    $posts = array_filter($posts, function ($post) use ($title_filter) {
+        return strpos(strtolower($post['title']), $title_filter) !== false;
+    });
+}
+
+if (isset($_GET['date']) && !empty($_GET['date'])) {
+    $date_filter = $_GET['date'];
+    $posts = array_filter($posts, function ($post) use ($date_filter) {
+        return strpos($post['date_created'], $date_filter) !== false;
+    });
+}
+
+if (isset($_GET['content']) && !empty($_GET['content'])) {
+    $content_filter = strtolower($_GET['content']);
+    $posts = array_filter($posts, function ($post) use ($content_filter) {
+        return strpos(strtolower($post['content']), $content_filter) !== false;
+    });
+}
+
+if (isset($_GET['month']) && !empty($_GET['month'])) {
+    $selected_month = $_GET['month'];
+    $posts = array_filter($posts, function ($post) use ($selected_month) {
+        return strpos($post['date_created'], $selected_month) !== false;
+    });
+}
+
+// Sort the posts by date_created
+if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
+    usort($posts, function ($a, $b) {
+        return strtotime($a['date_created']) - strtotime($b['date_created']);
+    });
+} else {
+    usort($posts, function ($a, $b) {
+        return strtotime($b['date_created']) - strtotime($a['date_created']);
+    });
+}
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +118,7 @@ $result = $connection->query($query);
                     <option value="">All Months</option>
                     <?php while ($row = $archive_result->fetch_assoc()): ?>
                         <option value="<?php echo htmlspecialchars($row['archive_month']); ?>" 
-                            <?php echo (isset($selected_month) && $selected_month === $row['archive_month']) ? 'selected' : ''; ?>>
+                            <?php echo (isset($_GET['month']) && $_GET['month'] === $row['archive_month']) ? 'selected' : ''; ?>>
                             <?php echo date("F Y", strtotime($row['archive_month'] . "-01")); ?>
                         </option>
                     <?php endwhile; ?>
@@ -109,29 +126,29 @@ $result = $connection->query($query);
 
                 <label for="sort">Sort by:</label>
                 <select name="sort" id="sort">
-                    <option value="newest" <?php echo (isset($sort_order) && $sort_order === "newest") ? 'selected' : ''; ?>>Newest</option>
-                    <option value="oldest" <?php echo (isset($sort_order) && $sort_order === "oldest") ? 'selected' : ''; ?>>Oldest</option>
+                    <option value="newest" <?php echo (isset($_GET['sort']) && $_GET['sort'] === "newest") ? 'selected' : ''; ?>>Newest</option>
+                    <option value="oldest" <?php echo (isset($_GET['sort']) && $_GET['sort'] === "oldest") ? 'selected' : ''; ?>>Oldest</option>
                 </select>
 
                 <button type="submit">Apply Filters</button>
             </form>
 
             <!-- Display blog posts -->
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
+            <?php if (!empty($posts)): ?>
+                <?php foreach ($posts as $post): ?>
                     <article class="blog-post">
-                        <h3 class="post-title"><?php echo htmlspecialchars($row['title']); ?></h3>
+                        <h3 class="post-title"><?php echo htmlspecialchars($post['title']); ?></h3>
                         <p class="post-date">
                             <strong>Date:</strong> 
                             <?php 
-                                $date = new DateTime($row['date_created']);
+                                $date = new DateTime($post['date_created']);
                                 echo $date->format('jS F Y, H:i \U\T\C'); 
                             ?>
                         </p>
-                        <p class="post-content"><?php echo nl2br(htmlspecialchars($row['content'])); ?></p>
+                        <p class="post-content"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
                         <hr class="post-divider">
                     </article>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             <?php else: ?>
                 <p class="no-posts">No blog posts found for the selected filters.</p>
             <?php endif; ?>
