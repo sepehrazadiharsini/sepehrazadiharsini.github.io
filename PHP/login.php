@@ -52,20 +52,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>SEPEHR | LOGIN</title>
 </head>
 
-
 <body>
     <header>
         <nav>
             <h2 class="name">Sepehr Azadi Harsini</h2>
             <ul class="nav-link">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="projects.html">My Portfolio</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../blog.html">Blog</a></li>
+                <li><a href="../experience.html">My Experience</a></li>
+                <li><a href="../projects.html">My Portfolio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-
 
     <main>
         <aside class="login-form">
@@ -73,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php if (isset($error_message)): ?>
                 <p class="error"><?php echo htmlspecialchars($error_message); ?></p>
             <?php endif; ?>
-            <form action="PHP/login.php" method="POST">
+            <form action="login.php" method="POST">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 <label for="password">Password:</label>
@@ -87,12 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </aside>
     </main>
 
-
     <footer id="contact">
         <p>Contact</p>
         <p>Email: <a href="mailto:ec24789@qmul.ac.uk"><i class="fas fa-envelope"></i>s.azadi-harsini@se24.qmul.ac.uk</a></p>
         <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
     </footer>
-    
 </body>
 </html>

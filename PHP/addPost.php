@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <ul class='nav-link'>
                         <li><a href='index.php'>Home</a></li>
                         <li><a href='viewBlog.php'>Blog</a></li>
+                        <li><a href='../experience.html'>My Experience</a></li>
                         <li><a href='../projects.html'>My Portfolio</a></li>
                         <li><a href='logout.php'>Logout</a></li>
                     </ul>

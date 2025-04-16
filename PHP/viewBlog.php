@@ -1,6 +1,12 @@
 <?php
 session_start(); // Start the session
 
+// Check if the user is logged in
+if (!isset($_SESSION['user_email'])) {
+    header("Location: login.php"); // Redirect to login page if not logged in
+    exit();
+}
+
 $server_name = "localhost";
 $username = "root";
 $password = "";
@@ -68,6 +74,7 @@ $result = $connection->query($query);
             <ul class="nav-link">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="viewBlog.php">Blog</a></li>
+                <li><a href="../experience.html">My Experience</a></li>
                 <li><a href="../projects.html">My Portfolio</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
