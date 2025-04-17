@@ -1,12 +1,6 @@
 <?php
 session_start(); // Start the session
 
-// Check if the user is logged in
-if (!isset($_SESSION['user_email'])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
-    exit();
-}
-
 $server_name = "localhost";
 $username = "root";
 $password = "";
@@ -93,7 +87,11 @@ if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
                 <li><a href="viewBlog.php">Blog</a></li>
                 <li><a href="../experience.html">My Experience</a></li>
                 <li><a href="../projects.html">My Portfolio</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <?php if (isset($_SESSION['user_email'])): ?>
+                    <li><a href="logout.php">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Login</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
@@ -151,6 +149,11 @@ if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
                 <?php endforeach; ?>
             <?php else: ?>
                 <p class="no-posts">No blog posts found for the selected filters.</p>
+            <?php endif; ?>
+
+            <!-- Add Post Button -->
+            <?php if (isset($_SESSION['user_email'])): ?>
+                <a href="addEntry.php" class="add-post-button">Add Post</a>
             <?php endif; ?>
         </section>
     </main>
