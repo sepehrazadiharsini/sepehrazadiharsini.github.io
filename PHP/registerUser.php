@@ -4,13 +4,13 @@ $username = "root";
 $password = "";
 $database_name = "blog";
 
-// Create a connection to the database
+
 $connection = new mysqli($server_name, $username, $password, $database_name);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-// Check if the form is submitted
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $connection->real_escape_string($_POST['email']);
     $password = $connection->real_escape_string($_POST['password']);
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="reset" id="clearButton">Clear</button>
             </form>
 
-            <!-- Include external JavaScript -->
+            
             <script src="../Javascript/clearForm.js"></script>
         </section>
     </main>

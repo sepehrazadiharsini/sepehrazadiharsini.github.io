@@ -1,18 +1,16 @@
 <?php
-session_start(); // Start the session
+session_start();
 
 $server_name = "localhost";
 $username = "root";
 $password = "";
 $database_name = "blog";
 
-// Create a connection to the database
 $connection = new mysqli($server_name, $username, $password, $database_name);
 if ($connection->connect_error) {
     die("Connection failed: " . $connection->connect_error);
 }
 
-// Fetch all blog posts from the database
 $query = "SELECT * FROM blog_posts";
 $result = $connection->query($query);
 
@@ -23,7 +21,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Fetch unique months and years for the dropdown
+// Fetch unique dastes for the dropdown
 $archive_query = "SELECT DISTINCT DATE_FORMAT(date_created, '%Y-%m') AS archive_month FROM blog_posts ORDER BY archive_month DESC";
 $archive_result = $connection->query($archive_query);
 
@@ -100,7 +98,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
         <section class="blog-posts">
             <h2>Blog Posts</h2>
 
-            <!-- Filter Form -->
+            
             <form method="GET" action="viewBlog.php" class="filter-form">
                 <label for="title">Filter by Title:</label>
                 <input type="text" id="title" name="title" value="<?php echo isset($_GET['title']) ? htmlspecialchars($_GET['title']) : ''; ?>">
@@ -131,6 +129,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
                 <button type="submit">Apply Filters</button>
             </form>
 
+            
             <!-- Display blog posts -->
             <?php if (!empty($posts)): ?>
                 <?php foreach ($posts as $post): ?>
@@ -151,7 +150,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === "oldest") {
                 <p class="no-posts">No blog posts found for the selected filters.</p>
             <?php endif; ?>
 
-            <!-- Add Post Button -->
+            
             <?php if (isset($_SESSION['user_email'])): ?>
                 <a href="addEntry.php" class="add-post-button">Add Post</a>
             <?php endif; ?>

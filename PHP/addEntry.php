@@ -1,9 +1,9 @@
 <?php
-session_start(); // Start the session
+session_start();
 
-// Check if the user is logged in
+
 if (!isset($_SESSION['user_email'])) {
-    header("Location: login.php"); // Redirect to login page if not logged in
+    header("Location: login.php");
     exit();
 }
 
@@ -59,7 +59,7 @@ if ($connection->connect_error) {
                     <button type="reset" id="clearButton">Clear</button>
                 </form>
                 <?php
-                // Clear the session variables after pre-filling the form
+                // Clear the session variables
                 unset($_SESSION['edit_title']);
                 unset($_SESSION['edit_content']);
                 ?>
@@ -73,7 +73,6 @@ if ($connection->connect_error) {
         <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
     </footer>
 
-    <!-- Include external JavaScript -->
     <script src="../Javascript/prevent.js"></script>
     <script src="../Javascript/clearForm.js"></script>
 </body>
