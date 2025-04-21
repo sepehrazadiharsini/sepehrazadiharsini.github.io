@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../CSS/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../Javascript/clearForm.js"></script>
     <title>SEPEHR | LOGIN</title>
 </head>
 
@@ -81,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="reset" id="clearButton">Clear</button>
             </form>
 
-            <script src="../Javascript/clearForm.js"></script>
+            
         </aside>
     </main>
 

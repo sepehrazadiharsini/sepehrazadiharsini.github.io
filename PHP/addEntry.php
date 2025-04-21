@@ -26,6 +26,8 @@ if ($connection->connect_error) {
     <link rel="stylesheet" href="../CSS/style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../Javascript/prevent.js"></script>
+    <script src="../Javascript/clearForm.js"></script>
     <title>SEPEHR | ADD ENTRY</title>
 </head>
 
@@ -73,7 +75,6 @@ if ($connection->connect_error) {
         <p>GitHub: <a href="https://github.com/sepehrazadiharsini" target="_blank"><i class="fab fa-github"></i> sepehrazadiharsini</a></p>
     </footer>
 
-    <script src="../Javascript/prevent.js"></script>
-    <script src="../Javascript/clearForm.js"></script>
+    
 </body>
 </html>
