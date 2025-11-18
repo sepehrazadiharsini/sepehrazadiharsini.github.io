@@ -15,7 +15,6 @@
     color: #f8fafc;
 }
 
-/* Color Variables */
 :root {
     --color-1: #a3c6eb;
     --color-2: #acd8ec;
@@ -49,7 +48,7 @@ a:hover {
 }
 
 .container {
-    max-width: 75rem; /* 1200px */
+    max-width: 75rem;
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -416,4 +415,179 @@ th {
 
 .project-name {
     font-weight: bold;
+}
+
+/* Blog Post Styles */
+.blog-post {
+    background-color: var(--color-4);
+    border: 0.125rem solid var(--color-1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-family: "Exo 2", sans-serif;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    color: var(--color-1);
+    margin-bottom: 0.5rem;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: var(--color-2);
+    margin-bottom: 1rem;
+}
+
+.post-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.post-divider {
+    border: 0;
+    border-top: 0.125rem solid var(--color-1);
+    margin-top: 1rem;
+}
+
+/* No Posts Message */
+.no-posts {
+    font-size: 1.2rem;
+    color: var(--color-1);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Filter Form Styles */
+.filter-form {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--color-4);
+    border: 0.125rem solid var(--color-1);
+    font-family: "Exo 2", sans-serif;
+}
+
+.filter-form label {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+.filter-form input, .filter-form select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 1rem;
+    border: 0.125rem solid var(--color-1);
+}
+
+.filter-form button {
+    background-color: var(--color-1);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-form button:hover {
+    background-color: var(--color-2);
+}
+
+/* Highlight missing fields */
+.error {
+    border: 0.125rem solid red;
+    background-color: #ffe6e6;
+}
+
+/* Media Queries */
+
+/* screen width 768px */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link li {
+        padding-left: 0;
+        margin-bottom: 1rem;
+    }
+
+    .about-me {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-me p {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .about-me figure {
+        max-width: 80%;
+    }
+
+    .my-skills table, .my-education table, .portfolio-table {
+        font-size: 0.9rem;
+    }
+
+    .blog-post {
+        padding: 0.5rem;
+    }
+
+    .filter-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .filter-form label, .filter-form input, .filter-form select, .filter-form button {
+        width: 100%;
+    }
+}
+
+/* screen width 480px */
+@media (max-width: 480px) {
+    header nav h2.name {
+        font-size: 1.2rem;
+    }
+
+    .nav-link li {
+        margin-bottom: 0.5rem;
+    }
+
+    .about-me h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-me p {
+        font-size: 1rem;
+    }
+
+    .about-me figure img {
+        width: 100%;
+    }
+
+    .my-skills table, .my-education table, .portfolio-table {
+        font-size: 0.8rem;
+    }
+
+    .blog-post {
+        font-size: 0.9rem;
+    }
+
+    .filter-form {
+        padding: 0.5rem;
+    }
+
+    .filter-form label, .filter-form input, .filter-form select, .filter-form button {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
 }
